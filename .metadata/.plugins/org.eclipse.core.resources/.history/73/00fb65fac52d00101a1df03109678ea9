@@ -1,0 +1,48 @@
+package TransportPackage;
+
+public class TransportModel {
+	private int id;
+	private String fullname;
+	private String email;
+	private String phone_number;
+	private String pickup_location;
+	public TransportModel(int id, String fullname, String email, String phone_number, String pickup_location) {
+		super();
+		this.id = id;
+		this.fullname = fullname;
+		this.email = email;
+		this.phone_number = phone_number;
+		this.pickup_location = pickup_location;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhone_number() {
+		return phone_number;
+	}
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
+	}
+	public String getPickup_location() {
+		return pickup_location;
+	}
+	public void setPickup_location(String pickup_location) {
+		this.pickup_location = pickup_location;
+	}
+	
+}

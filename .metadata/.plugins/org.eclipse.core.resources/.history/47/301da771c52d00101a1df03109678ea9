@@ -1,0 +1,21 @@
+package TransportPackage;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DBConnection {
+    private static String url = "jdbc:mysql://localhost:3306/transport";
+    private static String user = "root";
+    private static String pass = "admin";
+
+    public static Connection getConnection() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            return DriverManager.getConnection(url, user, pass);
+        } catch (Exception e) {
+            System.out.println("Database is not connected!");
+            e.printStackTrace();
+            return null;
+        }
+    }
+}

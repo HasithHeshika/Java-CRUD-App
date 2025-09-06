@@ -1,0 +1,349 @@
+@charset "UTF-8";
+
+/* transport-styles.css */
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body takes up the full viewport height */
+    margin: 0;
+    background-color: #439bc4; /* Light blue background to match the transport theme */
+    background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20240630/pngtree-sitting-on-bus-public-transport-details-blue-passenger-seat-image_15830791.jpg'); /* Optional: Add a background image */
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center; /* Center the background image */
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navigation */
+header {
+    background-color: #004d99;
+    color: white;
+    padding: 15px 0px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between; /* Pushes logo left and nav-links right */
+    align-items: center;
+    max-width: 1200px; /* Optional: Limit width for large screens */
+    margin: 0 auto; /* Center the nav */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.system-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px; /* Space between links */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #ffcc00;
+}
+
+.nav-links li a.active {
+    font-weight: bold; /* Highlight active link */
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Section Styling */
+.auth-container {
+    max-width: 500px; /* Increased from 400px to 500px */
+    margin: 50px auto;
+    padding: 50px; /* Increased from 20px to 30px */
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.auth-container h2 {
+    font-size: 2rem;
+    color: #004d99;
+    margin-bottom: 20px;
+}
+
+.auth-container form div {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.auth-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.auth-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.auth-container select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+    color: #333;
+    appearance: none; /* Removes default dropdown arrow styling */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+    cursor: pointer;
+}
+
+.auth-container select:focus {
+    outline: none;
+    border-color: #007bff; /* Highlight border on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.auth-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.auth-container button:hover {
+    background-color: #0056b3;
+}
+
+.auth-container p {
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.auth-container p a {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between; /* Space out the text and icons */
+    align-items: center;
+    background-color: #004d99;
+    color: white;
+    padding: 15px 20px;
+}
+
+footer p {
+    margin: 0;
+}
+
+.social-media {
+    display: flex;
+    gap: 15px; /* Add spacing between icons */
+}
+
+.social-media a img {
+    width: 24px; /* Set the width of the icons */
+    height: 24px; /* Set the height of the icons */
+    transition: transform 0.3s ease;
+}
+
+.social-media a img:hover {
+    transform: scale(1.2); /* Slightly enlarge the icon on hover */
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    align-items: center; /* Align image and text vertically */
+    gap: 20px; /* Add spacing between the image and text */
+}
+
+.about-content img {
+    max-width: 50%; /* Limit the image width to 50% */
+    border-radius: 10px; /* Optional: Add rounded corners to the image */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better design */
+}
+
+.about-content p {
+    flex: 1; /* Allow the text to take up the remaining space */
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.about {
+    display: flex;
+    flex-direction: column;
+    justify-content:rightS; /* Vertically center the content */
+    align-items: right; /* Horizontally center the content */
+    min-height: calc(100vh - 100px); /* Adjust height to account for header and footer */
+    text-align: center; /* Center the text inside the section */
+    padding: 20px; /* Add padding for spacing */
+}
+
+.about h2 {
+    font-size: 2.5rem;
+    color: #004d99;
+    margin-bottom: 20px;
+}
+
+/* Contact Section */
+.contact-wrapper {
+    display: flex;
+    justify-content: center; /* Center the contact section horizontally */
+    align-items: center; /* Center the contact section vertically */
+    min-height: calc(100vh - 100px); /* Adjust height to account for header and footer */
+    padding: 10px;
+}
+
+.contact {
+    max-width: 500px; /* Same width as the login page */
+    margin: 0 auto;
+    padding: 20px; /* Decreased padding from 30px to 20px */
+    background-color: white;
+    border-radius: 30px; /* Same rounded corners as the login page */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Same shadow as the login page */
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 2rem;
+    color: #004d99;
+    margin-bottom: 20px;
+}
+
+.contact form div {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.contact label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.contact input,
+.contact textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact textarea {
+    resize: none; /* Prevent resizing of the textarea */
+    height: 60px; /* Set a fixed height for the textarea */
+}
+
+.contact button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact button:hover {
+    background-color: #0056b3;
+}
+
+/* Mission Box */
+.mission-box {
+    background-color: #f0f8ff; /* Light blue background */
+    padding: 20px;
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better design */
+    color: #004d99; /* Change text color to match the theme */
+    text-align: center;
+    margin-top: 20px;
+}
+
+.mission-box h2 {
+    color: #6f30a3; /* Change the heading color */
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.mission-box p {
+    color: #333; /* Change the paragraph text color */
+    font-size: 1.2rem;
+    line-height: 1.1;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn-primary {
+        width: 80%;
+        margin: 10px auto;
+    }
+}

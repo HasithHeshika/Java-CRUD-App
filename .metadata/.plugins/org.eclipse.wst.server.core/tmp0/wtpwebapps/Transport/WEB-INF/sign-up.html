@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Online Transport System</title>
+    <link rel="stylesheet" href="transport-styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo-container">
+          <img src="https://marketplace.canva.com/EAF5lVrtgYg/1/0/1600w/canva-blue-and-orange-logistics-logo-rOf-eNSosdE.jpg" alt="System Logo" class="logo" />
+          <span class="system-name">GoFleet</span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="About us t.html">About</a></li>
+          <li><a href="rides.html">Book a Ride</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="payment.html">Payment</a></li>
+          <li><a href="accounts.html" class="active">Accounts</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="auth-container">
+  <h2>Create an Account</h2>
+  <form id="signupForm">
+    <div class="input-group">
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
+    </div>
+    <div class="input-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required />
+    </div>
+    <div class="input-group">
+      <label for="country">Country</label>
+      <select id="country" name="country" required>
+        <option value="" disabled selected>Select your country</option>
+        <option value="USA">United States</option>
+        <option value="UK">United Kingdom</option>
+        <option value="Sri Lanka">Sri Lanka</option>
+        <option value="Canada">Canada</option>
+        <option value="Australia">Australia</option>
+        <option value="India">India</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Create a password" required />
+    </div>
+    <div class="input-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required />
+    </div>
+    <button type="submit" class="btn-primary">Sign Up</button>
+  </form>
+  <p class="switch-link">Already have an account? <a href="login t.html">Login Here</a></p>
+</section>
+  </main>
+  
+<script>
+  // JavaScript to handle form submission and save data dynamically
+  document.getElementById("signupForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent form from submitting normally
+
+    // Get form values
+    const fullName = document.getElementById("fullName").value;
+    const email = document.getElementById("email").value;
+    const country = document.getElementById("country").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    // Validate passwords match
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    // Save data to localStorage
+    const userData = {
+      fullName: fullName,
+      email: email,
+      country: country,
+      password: password,
+    };
+
+    localStorage.setItem("userData", JSON.stringify(userData));
+
+    // Redirect to account profile page
+    window.location.href = "account-profile.html";
+  });
+</script>
+  </body>
+</html>

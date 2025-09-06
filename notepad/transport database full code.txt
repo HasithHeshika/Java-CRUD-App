@@ -1,0 +1,85 @@
+CREATE DATABASE IF NOT EXISTS transport;
+USE transport;
+
+
+-- Table: profile_information
+CREATE TABLE IF NOT EXISTS profile_information (
+  id INT NOT NULL AUTO_INCREMENT,
+  fullname VARCHAR(1000) DEFAULT NULL,
+  email VARCHAR(1000) DEFAULT NULL,
+  phone_number VARCHAR(1000) DEFAULT NULL,
+  pickup_location VARCHAR(1000) DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE bookings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    contact VARCHAR(15) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    pickup_location VARCHAR(255) NOT NULL,
+    drop_location VARCHAR(255) NOT NULL
+);
+
+
+
+-- Table: complaints
+CREATE TABLE IF NOT EXISTS complaints (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  customerName VARCHAR(100),
+  phone VARCHAR(15),
+  email VARCHAR(100),
+  incidentDate DATE,
+  vehicleType VARCHAR(50),
+  complaintType TEXT,
+  vehiclePlate VARCHAR(20),
+  driverName VARCHAR(100),
+  details TEXT
+);
+
+-- Table: driver
+CREATE TABLE IF NOT EXISTS driver (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(1000) NOT NULL,
+  license_Number VARCHAR(1000) NOT NULL,
+  phone VARCHAR(1000),
+  vehicle_assigned VARCHAR(1000),
+  email VARCHAR(1000),
+  password VARCHAR(1000) DEFAULT 'changeme'
+);
+
+
+
+INSERT INTO profile_information (fullname, email, phone_number, pickup_location) VALUES
+('Alice Johnson', 'alice@example.com', '1234567890', 'Downtown'),
+('Bob Smith', 'bobsmith@example.com', '9876543210', 'City Mall'),
+('Clara Lee', 'clara.lee@example.com', '5556667777', 'Airport'),
+('David Kim', 'davidkim@example.com', '4445556666', 'Railway Station'),
+('Eva Mendes', 'eva.m@example.com', '1112223333', 'University Gate');
+
+
+INSERT INTO bookings (name, contact, email, pickup_location, drop_location) VALUES
+('Alice Perera', '0771234567', 'alice@example.com', 'Colombo', 'Kandy'),
+('Bob Silva', '0712345678', 'bob.silva@example.com', 'Negombo', 'Galle'),
+('Charlie Fernando', '0769876543', 'charlie.f@example.com', 'Matara', 'Jaffna'),
+('Diana Wickramasinghe', '0751122334', 'diana.w@example.com', 'Kurunegala', 'Anuradhapura'),
+('Eshan De Silva', '0785566778', 'eshan.d@example.com', 'Batticaloa', 'Trincomalee');
+
+
+
+INSERT INTO complaints (customerName, phone, email, incidentDate, vehicleType, complaintType, vehiclePlate, driverName, details) VALUES
+('Alice Johnson', '1234567890', 'alice@example.com', '2025-05-08', 'Sedan', 'Driver was rude', 'ABC-123', 'John Doe', 'The driver was impolite.'),
+('Bob Smith', '9876543210', 'bobsmith@example.com', '2025-05-09', 'SUV', 'Overcharged', 'XYZ-456', 'Jane Smith', 'Charged more than expected.'),
+('Clara Lee', '5556667777', 'clara.lee@example.com', '2025-05-10', 'Hatchback', 'Late arrival', 'LMN-789', 'Mike Ross', 'Driver was 20 minutes late.'),
+('David Kim', '4445556666', 'davidkim@example.com', '2025-05-11', 'Van', 'Vehicle condition poor', 'QRS-987', 'Rachel Zane', 'The vehicle was dirty and smelly.'),
+('Eva Mendes', '1112223333', 'eva.m@example.com', '2025-05-12', 'Sedan', 'No AC', 'TUV-654', 'Harvey Specter', 'AC was not working during the ride.');
+
+
+
+INSERT INTO driver (name, license_Number, phone, vehicle_assigned, email) VALUES
+('John Doe', 'DL12345678', '5551234567', 'Sedan - ABC-123', 'johndoe@example.com'),
+('Jane Smith', 'DL87654321', '5557654321', 'SUV - XYZ-456', 'janesmith@example.com'),
+('Mike Ross', 'DL11223344', '5559876543', 'Hatchback - LMN-789', 'mikeross@example.com'),
+('Rachel Zane', 'DL99887766', '5556781234', 'Van - QRS-987', 'rachelzane@example.com'),
+('Harvey Specter', 'DL55667788', '5553456789', 'Sedan - TUV-654', 'harvey@example.com');

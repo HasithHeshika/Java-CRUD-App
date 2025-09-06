@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+     <servlet>
+     	<servlet-name>RideInsertServlet</servlet-name>
+     	<servlet-class>TransportPackage.RideInsertServlet</servlet-class>
+     </servlet>
+     
+     <servlet-mapping>
+     	<servlet-name>RideInsertServlet</servlet-name>
+     	<url-pattern>/RideInsertServlet</url-pattern>
+     </servlet-mapping>
+     
+     
+     <servlet>
+     	<servlet-name>RideGetAllServlet</servlet-name>
+     	<servlet-class>TransportPackage.RideGetAllServlet</servlet-class>
+     </servlet>
+     
+     <servlet-mapping>
+     	<servlet-name>RideGetAllServlet</servlet-name>
+     	<url-pattern>/RideGetAllServlet</url-pattern>
+     </servlet-mapping>
+
+<servlet>
+     	<servlet-name>RideUpdateServlet</servlet-name>
+     	<servlet-class>TransportPackage.RideUpdateServlet</servlet-class>
+     </servlet>
+     
+     <servlet-mapping>
+     	<servlet-name>RideUpdateServlet</servlet-name>
+     	<url-pattern>/RideUpdateServlet</url-pattern>
+     </servlet-mapping>
+     
+     <servlet>
+     	<servlet-name>RideDeleteServlet</servlet-name>
+     	<servlet-class>TransportPackage.RideDeleteServlet</servlet-class>
+     </servlet>
+     
+     <servlet-mapping>
+     	<servlet-name>RideDeleteServlet</servlet-name>
+     	<url-pattern>/RideDeleteServlet</url-pattern>
+     </servlet-mapping>
+
+</web-app>

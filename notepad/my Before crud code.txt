@@ -1,0 +1,259 @@
+DBConnection.java:
+
+package TransportPackage;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DBConnection {
+	
+	private static String url ="jdbc:mysql://localhost:3306/transport";
+	private static String user = "root";
+	private static String pass = "admin";
+	private static Connection con;
+	
+public static Connection getConnection() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con=DriverManager.getConnection(url, user, pass);
+	}catch(Exception e) {
+		System.out.println("Database is not connected !");
+	}
+		return con;
+	}
+}
+
+InsertServlet.java:
+
+package TransportPackage;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.net.openssl.OpenSSLStatus.Name;
+
+@WebServlet("/InsertServlet")
+public class InsertServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String fullname = request.getParameter("fullname");
+		String email =request.getParameter("email");
+		String phone_number = request.getParameter("phone_number");
+		String pickup_location = request.getParameter("pickup_location");
+		
+		boolean isTrue;
+		
+		isTrue = TransportController.insertdata(fullname, email, phone_number, pickup_location);
+		
+		if(isTrue == true) {
+			String alertMessage = "Data Insert Successful";
+			response.getWriter().println("<script> alert('"+alertMessage+"'); window.location.href = 'done.jsp'</script>");
+		}
+		else {
+			RequestDispatcher dis2 = request.getRequestDispatcher("wrong.jsp");
+			dis2.forward(request, response);
+		}
+	}
+
+}
+
+TransportController.java:
+
+package TransportPackage;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class TransportController {
+	// Connect DB
+	private static boolean isSuccess;
+	private static Connection con = null;
+	private static Statement stmt = null;
+	private static ResultSet rs = null;
+	
+	//Insert Data Function
+	public static boolean insertdata(String fullname, String email, String phone_number, String pickup_location){
+		
+		boolean isSuccess = false;
+		try {
+			//DB CONNECTION CALL
+			con=DBConnection.getConnection();
+			stmt=con.createStatement();
+			
+			//SQL QUERY
+			String sql = "insert into profile_information values(0,'"+fullname+"','"+email+"','"+phone_number+"','"+pickup_location+"')";
+			int rs = stmt.executeUpdate(sql);
+			if(rs>0) {
+				isSuccess = true;
+			}
+			else {
+				isSuccess = false;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return isSuccess;
+	}
+}
+
+TransportModel.java:
+
+package TransportPackage;
+
+public class TransportModel {
+	private int id;
+	private String fullname;
+	private String email;
+	private String phone_number;
+	private String pickup_location;
+	public TransportModel(int id, String fullname, String email, String phone_number, String pickup_location) {
+		super();
+		this.id = id;
+		this.fullname = fullname;
+		this.email = email;
+		this.phone_number = phone_number;
+		this.pickup_location = pickup_location;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhone_number() {
+		return phone_number;
+	}
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
+	}
+	public String getPickup_location() {
+		return pickup_location;
+	}
+	public void setPickup_location(String pickup_location) {
+		this.pickup_location = pickup_location;
+	}
+	
+}
+
+xnl.xml:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+     <servlet>
+     	<servlet-name>InsertServlet</servlet-name>
+     	<servlet-class>TransportPackage.InsertServlet</servlet-class>
+     </servlet>
+     
+     <servlet-mapping>
+     	<servlet-name>InsertServlet</servlet-name>
+     	<url-pattern>/InsertServlet</url-pattern>
+     </servlet-mapping>
+</web-app>
+
+Accounts.jsp:
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="InsertServlet" method="post">
+  <table>
+    <tr>
+      <td>Full Name:</td>
+      <td><input type="text" name="fullname" required /></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td><input type="text" name="email" required /></td>
+    </tr>
+    <tr>
+      <td>Phone Number:</td>
+      <td><input type="text" name="phone_number" required /></td>
+    </tr>
+    <tr>
+      <td>Pickup Location:</td>
+      <td><input type="text" name="pickup_location" required /></td>
+    </tr>
+    <tr>
+      <td colspan="2"><input type="submit" value="Submit"></td>
+    </tr>
+  </table>
+	 </form>
+</body>
+</html>
+
+Database Table:
+
+ALTER TABLE `transport`.`profile_information` 
+CHANGE COLUMN `fullname` `fullname` VARCHAR(1000) NULL DEFAULT NULL ,
+CHANGE COLUMN `email` `email` VARCHAR(1000) NULL DEFAULT NULL ,
+CHANGE COLUMN `phone_number` `phone_number` VARCHAR(1000) NULL DEFAULT NULL ,
+CHANGE COLUMN `pickup_location` `pickup_location` VARCHAR(1000) NULL DEFAULT NULL ;
+
+Error message after entering data:
+
+Wrong
+
+done.jsp:
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Done</h2>
+</body>
+</html>
+
+wrong.jsp:
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+ <h2>Wrong</h2>
+</body>
+</html>
+
+The message which should be displayed: "Data Insert Successful"
+
+
